@@ -1,9 +1,8 @@
 {
-  "name": "CHANGE THIS : Extension boilerplate",
+  "name": "Image Scraper",
   "version": "0.0.1",
-  "manifest_version": 2,
-  "description": "This extension was created with the awesome extensionizr.com",
-  "homepage_url": "http://extensionizr.com",
+  "manifest_version": 3,
+  "description": "This extension was by Ben Chan and Andrew DeNeve",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
