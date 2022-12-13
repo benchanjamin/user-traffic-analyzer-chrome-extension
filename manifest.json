@@ -1,15 +1,12 @@
 {
-    "name": "My YT Bookmarks",
+    "name": "Image Scraper",
     "version": "0.1.0",
-    "description": "Saving timestamps in YT videos",
+    "description": "Created by Ben Chan and Andrew DeNeve",
     "permissions": ["storage", "tabs"],
     "host_permissions": ["https://*.youtube.com/*"],
-    "background": {
-      "service_worker": "background.js"
-    },
     "content_scripts": [
       {
-        "matches": ["https://*.youtube.com/*"],
+        "matches": ["http://*/*", "https://*/*"],
         "js": ["contentScript.js"]
       }
     ],
@@ -26,9 +23,9 @@
     ],
     "action": {
       "default_icon": {
-        "16": "assets/ext-icon.png",
-        "24": "assets/ext-icon.png",
-        "32": "assets/ext-icon.png"
+        "16": "assets/camera.png",
+        "24": "assets/camera.png",
+        "32": "assets/camera.png"
       },
       "default_title": "My YT Bookmarks",
       "default_popup": "popup.html"
