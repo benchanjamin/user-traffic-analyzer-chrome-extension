@@ -14,7 +14,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
         });
 
         // Log the URL to the console.
-        console.log(hostname);
+        // console.log(hostname);
     }
 });
 
@@ -37,6 +37,7 @@ chrome.webRequest.onCompleted.addListener(
         if (!fileSize) fileSize = 0
 
         // add the file to statistics
+        console.log(details.initiator);
         let url = new URL(details.initiator);
         let hostname = url.hostname;
 

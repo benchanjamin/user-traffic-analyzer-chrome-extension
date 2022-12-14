@@ -16,15 +16,24 @@ const onDelete = e => {
 const setBookmarkAttributes = () => {
 };
 
+function getURLTimer(key) {
+    return new Promise((resolve) => {
+        chrome.storage.local.get(key, resolve)
+    });
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     const activeTab = await getActiveTabURL();
+    console.log(activeTab.url);
     const url = new URL(activeTab.url);
-    const hostname_timer = url.hostname + "-timer"
+    const hostname = url.hostname;
+    const hostname_timer = hostname + "-timer";
 
     document.getElementsByClassName("hostname")[0].innerHTML = hostname;
 
     setInterval(startTimer.bind(hostname_timer), 1000);
-
+    let timer = getURLTimer(hostname_timer)[hostname_timer];
+    console.log(timer);
 });
 
 function sleep(ms) {
@@ -38,7 +47,7 @@ const getTime = t => {
     return date.toISOString().substr(11, 8);
 };
 
- function startTimer(hostname) {
+ async function startTimer(hostname) {
     let defaultValue = new Date().getTime();
 
 
@@ -56,7 +65,7 @@ const getTime = t => {
 
         // else if in dict
 
-        const activeTab = getActiveTabURL();
+        const activeTab = await getActiveTabURL();
         let url = new URL(activeTab.url);
         currentHostnameTimer = url.hostname + "-timer";
         sleep(500)
