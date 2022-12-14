@@ -38,7 +38,7 @@ const getTime = t => {
     return date.toISOString().substr(11, 8);
 };
 
-async function startTimer(hostname) {
+async function startTimer(hostname_timer) {
     const activeTab = await getActiveTabURL();
     let url = new URL(activeTab.url);
     let currentHostnameTimer = url.hostname + "-timer";
