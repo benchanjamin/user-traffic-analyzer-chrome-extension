@@ -43,9 +43,7 @@ chrome.webRequest.onCompleted.addListener(
         let oldValues;
         let get = await accessStorage(hostname);
 
-        // console.log(get[hostname])
         if (get[hostname] == undefined) {
-            console.log("made it here!")
             oldValues = {
                 no_main_frame: 0,
                 size_main_frame: 0,
@@ -77,10 +75,9 @@ chrome.webRequest.onCompleted.addListener(
                 no_total: 0
             }
         } else {
-            // console.log("made it here!")
             oldValues = JSON.parse(get[hostname]);
         }
-        console.log(get[hostname]);
+        // console.log(get[hostname]);
 
         switch (details.type) {
             case "main_frame":
