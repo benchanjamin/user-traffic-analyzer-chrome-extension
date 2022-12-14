@@ -1,5 +1,5 @@
 {
-    "name": "Image Scraper",
+    "name": "User Traffic Analyzer",
     "version": "0.1.0",
     "description": "Created by Ben Chan and Andrew DeNeve",
     "permissions": ["storage", "tabs"],
