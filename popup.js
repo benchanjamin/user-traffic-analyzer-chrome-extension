@@ -19,11 +19,11 @@ const setBookmarkAttributes = () => {
 document.addEventListener("DOMContentLoaded", async () => {
     const activeTab = await getActiveTabURL();
     const url = new URL(activeTab.url);
-    const hostname = url.hostname
+    const hostname_timer = url.hostname + "-timer"
 
     document.getElementsByClassName("hostname")[0].innerHTML = hostname;
 
-    setInterval(startTimer.bind(hostname), 1000);
+    setInterval(startTimer.bind(hostname_timer), 1000);
 
 });
 
@@ -42,8 +42,8 @@ const getTime = t => {
     let defaultValue = new Date().getTime();
 
 
-    let currentHostname = hostname;
-    while (hostname === currentHostname) {
+    let currentHostnameTimer = hostname;
+    while (hostname === currentHostnameTimer) {
         // set date as current one if not in storage dict
         const defaultValue = new Date()
         chrome.storage.sync.get({hostname: defaultValue}, function (data) {
@@ -58,7 +58,7 @@ const getTime = t => {
 
         const activeTab = getActiveTabURL();
         let url = new URL(activeTab.url);
-        currentHostname = url.hostname;
+        currentHostnameTimer = url.hostname + "-timer";
         sleep(500)
     }
 }
