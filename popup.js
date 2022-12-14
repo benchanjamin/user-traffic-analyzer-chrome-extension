@@ -47,27 +47,22 @@ const getTime = t => {
     return date.toISOString().substr(11, 8);
 };
 
- async function startTimer(hostname) {
-    let defaultValue = new Date().getTime();
+async function startTimer(hostname_timer) {
+    const activeTab = await getActiveTabURL();
+    let url = new URL(activeTab.url);
+    let currentHostnameTimer = url.hostname + "-timer";
+    // set date as current one if not in storage dict
+    const defaultValue = new Date();
+    chrome.storage.sync.get({[currentHostnameTimer]: defaultValue},
+        function (data) {
+            chrome.storage.sync.set({currentHostnameTimer: data.currentHostnameTimer});
+        }
+    );
 
 
-    let currentHostnameTimer = hostname;
-    while (hostname === currentHostnameTimer) {
-        // set date as current one if not in storage dict
-        const defaultValue = new Date()
-        chrome.storage.sync.get({hostname: defaultValue}, function (data) {
-            // data.links will be either the stored value, or defaultValue if nothing is set
-            chrome.storage.sync.set({hostname: data.links}, function () {
-                // The value is now stored, so you don't have to do this again
+    chrome.storage.sync.set({[currentHostnameTimer]: JSON.stringify()})
 
-            });
-        });
+    // else if in dict
 
-        // else if in dict
 
-        const activeTab = await getActiveTabURL();
-        let url = new URL(activeTab.url);
-        currentHostnameTimer = url.hostname + "-timer";
-        sleep(500)
-    }
 }
