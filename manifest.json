@@ -1,26 +1,37 @@
 {
-    "name": "User Traffic Analyzer",
-    "version": "0.1.0",
-    "description": "Created by Ben Chan and Andrew DeNeve",
-    "permissions": ["storage", "tabs", "devtools_page"],
-    "host_permissions": ["<all_urls>"],
-    "background": {
-      "service_worker": "background.js"
+  "name": "User Traffic Analyzer",
+  "version": "0.1.0",
+  "description": "Created by Ben Chan and Andrew DeNeve",
+  "permissions": [
+    "storage",
+    "tabs",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "contentScript.js"
+      ]
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "assets/camera.png",
+      "24": "assets/camera.png",
+      "32": "assets/camera.png"
     },
-    "content_scripts": [
-      {
-        "matches": ["http://*/*", "https://*/*"],
-        "js": ["contentScript.js"]
-      }
-    ],
-    "action": {
-      "default_icon": {
-        "16": "assets/camera.png",
-        "24": "assets/camera.png",
-        "32": "assets/camera.png"
-      },
-      "default_title": "My YT Bookmarks",
-      "default_popup": "popup.html"
-    },
-    "manifest_version": 3
+    "default_title": "See my traffic history",
+    "default_popup": "popup.html"
+  },
+  "manifest_version": 3
 }
