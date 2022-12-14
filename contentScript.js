@@ -1,18 +1,18 @@
 (() => {
     let youtubeLeftControls, youtubePlayer;
-    let currentVideo = "";
+    let currentURL = "";
     let currentVideoBookmarks = [];
 
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
-        const { type, value, videoId } = obj;
+        const { type, value, siteName } = obj;
 
         if (type === "NEW") {
-            currentVideo = videoId;
-            newVideoLoaded();
+            currentURL = siteName;
+            newSiteLoaded();
         }
     });
 
-    const newVideoLoaded = () => {
+    const newSiteLoaded = () => {
         const bookmarkBtnExists = document.getElementsByClassName("bookmark-btn")[0];
         console.log(bookmarkBtnExists);
 
