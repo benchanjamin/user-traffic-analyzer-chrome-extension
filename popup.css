@@ -1,12 +1,23 @@
-.container {
+@font-face{
+  font-family: Poppins-Bold;
+  src: url("./assets/fonts/Poppins/Poppins-Bold.ttf");
+}
+
+@font-face{
+  font-family: Poppins-Regular;
+  src: url("./assets/fonts/Poppins/Poppins-Regular.ttf");
+}
+
+.container-316 {
   width: 280px;
   color: #314d3e;
 }
 
-.title {
-  font-size: 14px;
-  font-weight: bold;
+.title-316 {
+  font-size: 16px;
   padding: 8px;
+  text-align: center;
+  font-family: Poppins-Bold, serif;
 }
 
 .textbox {
@@ -21,7 +32,7 @@
   border-color: #66afe9;
 }
 
-.bookmarks {
+.hostname-316 {
   margin: 5px 5px;
   padding: 3px;
 }

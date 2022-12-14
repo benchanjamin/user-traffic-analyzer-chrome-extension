@@ -26,9 +26,9 @@
   ],
   "action": {
     "default_icon": {
-      "16": "assets/camera.png",
-      "24": "assets/camera.png",
-      "32": "assets/camera.png"
+      "16": "assets/images/traffic-cone.png",
+      "24": "assets/images/traffic-cone.png",
+      "32": "assets/images/traffic-cone.png"
     },
     "default_title": "See my traffic history",
     "default_popup": "popup.html"
