@@ -23,15 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementsByClassName("hostname")[0].innerHTML = hostname;
 
-    startTimer(hostname);
-    while (true) {
-
-
-        chrome.sync.storage.set({
-            [hostname]: JSON.stringify("hi")
-        });
-        sleep(500)
-    }
+    setInterval(startTimer.bind(hostname), 1000);
 
 });
 
@@ -46,7 +38,7 @@ const getTime = t => {
     return date.toISOString().substr(11, 8);
 };
 
-async function startTimer(hostname) {
+ function startTimer(hostname) {
     let defaultValue = new Date().getTime();
 
 
@@ -64,7 +56,7 @@ async function startTimer(hostname) {
 
         // else if in dict
 
-        const activeTab = await getActiveTabURL();
+        const activeTab = getActiveTabURL();
         let url = new URL(activeTab.url);
         currentHostname = url.hostname;
         sleep(500)
