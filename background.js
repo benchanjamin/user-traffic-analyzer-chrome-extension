@@ -79,7 +79,8 @@ chrome.webRequest.onCompleted.addListener(
                 no_other: 0,
                 size_other: 0,
                 no_cache_hit: 0,
-                no_total: 0
+                no_total: 0,
+                size_total: 0
             }
         } else {
             oldValues = JSON.parse(get[hostname]);
@@ -145,6 +146,7 @@ chrome.webRequest.onCompleted.addListener(
             oldValues.no_cache_hit++;
         }
         oldValues.no_total++;
+        oldValues.size_total += fileSize;
 
         // write to storage
         chrome.storage.local.set({
