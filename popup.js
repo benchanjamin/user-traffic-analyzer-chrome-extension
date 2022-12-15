@@ -22,15 +22,24 @@ async function getURLTimer(key) {
     });
 }
 
+function accessStorage(key) {
+    return new Promise((resolve) => {
+        chrome.storage.local.get(key, resolve)
+    });
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     const activeTab = await getActiveTabURL();
     console.log(activeTab.url);
     const url = new URL(activeTab.url);
     const hostname = url.hostname;
-    const hostnameStartTime = hostname + "startTime";
+    // const hostnameStartTime = hostname + "startTime";
 
     document.getElementsByClassName("hostname")[0].innerHTML = hostname;
 
+    let get = await accessStorage(hostname)
+    let values = JSON.parse(get[hostname])
+    document.getElementsByClassName("total-number-of-images")[0].innerHTML = values.no_image
     // await startTimer(hostnameStartTime)
 });
 

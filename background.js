@@ -27,6 +27,9 @@ function accessStorage(key) {
 // listen for web requests
 chrome.webRequest.onCompleted.addListener(
     async function (details) {
+        if (details === undefined || details === null) {
+            return
+        }
         // calculate fileSize
         let fileSize;
         details.responseHeaders.forEach(v => {
@@ -37,9 +40,7 @@ chrome.webRequest.onCompleted.addListener(
         if (!fileSize) fileSize = 0
 
         // add the file to statistics
-        console.log(details.initiator);
-
-        if (details.initiator.startsWith("chrome") || details.initiator.startsWith("brave") || details.initiator === "undefined") {
+        if (details.initiator === "undefined") {
             return
         }
         let urlInitiator = new URL(details.initiator);
