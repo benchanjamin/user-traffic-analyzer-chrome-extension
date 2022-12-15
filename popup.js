@@ -33,8 +33,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log(activeTab.url);
     const url = new URL(activeTab.url);
     const hostname = url.hostname;
-    const button = document.getElementsByClassName("reset-button")[0];
-    button.addEventListener("click", reset.bind(hostname));
     // const hostnameStartTime = hostname + "startTime";
 
     document.getElementsByClassName("hostname")[0].innerHTML = hostname;
@@ -90,7 +88,7 @@ async function startTimer(hostnameStartTime) {
     }
 }
 
-function reset(hostname) {
+export function reset(hostname) {
     let oldValues = {
         no_main_frame: 0,
         size_main_frame: 0,
@@ -128,7 +126,6 @@ function reset(hostname) {
     });
     display(oldValues)
 }
-
 
 
 function display(values) {
