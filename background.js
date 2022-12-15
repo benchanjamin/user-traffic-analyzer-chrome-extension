@@ -1,23 +1,3 @@
-// Listen for any changes to the URL of any tab.
-chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
-    if (info.status === 'complete') {
-        // Get the URL of the tab that was updated.
-        let url = new URL(tab.url);
-        // hostname returns "developer.chrome.com" in
-        // 'https://developer.chrome.com/docs/extensions/reference/webRequest/#type-OnCompletedOptions'
-        let hostname = url.hostname
-
-        // send to contentScript.js
-        chrome.tabs.sendMessage(tabId, {
-            type: "NEW",
-            hostname: hostname,
-        });
-
-        // Log the URL to the console.
-        // console.log(hostname);
-    }
-});
-
 function accessStorage(key) {
     return new Promise((resolve) => {
         chrome.storage.local.get(key, resolve)
@@ -27,6 +7,7 @@ function accessStorage(key) {
 // listen for web requests
 chrome.webRequest.onCompleted.addListener(
     async function (details) {
+
         if (details === undefined || details === null) {
             return
         }
