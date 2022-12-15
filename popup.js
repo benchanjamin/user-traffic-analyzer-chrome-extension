@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 export function reset(hostname) {
     let oldValues = {
+        no_visit: 0,
         no_main_frame: 0,
         size_main_frame: 0,
         no_sub_frame: 0,
