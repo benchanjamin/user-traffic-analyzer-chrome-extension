@@ -1,10 +1,9 @@
 import {getActiveTabURL} from "./utils.js";
 import {reset} from "./popup.js";
 
-const activeTab = await getActiveTabURL();
-console.log(activeTab.url);
-const url = new URL(activeTab.url);
-const hostname = url.hostname;
+// For testing purposes
+// const activeTab = await getActiveTabURL();
+// console.log(activeTab.url);
 const resetHostnameButton = document.getElementsByClassName("reset-hostname-button")[0];
 resetHostnameButton.addEventListener("click", async function () {
     const activeTab = await getActiveTabURL();
