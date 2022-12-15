@@ -35,7 +35,13 @@ chrome.webRequest.onCompleted.addListener(
         } else if (String(details.initiator).startsWith("chrome") || String(details.initiator).startsWith("brave")) {
             return
         }
-        let urlInitiator = new URL(details.initiator);
+        let urlInitiator
+        try {
+            urlInitiator = new URL(details.initiator);
+        }
+        catch (e) {
+            return
+        }
 
         let hostname = urlInitiator.hostname;
 
