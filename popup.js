@@ -66,7 +66,7 @@ export function reset(hostname) {
 
 function display(values, hostname) {
     document.getElementsByClassName("hostname")[0].innerHTML = "Hostname: " + hostname;
-    document.getElementsByClassName("hostname-times-visited stat-box")[0].innerHTML = values.no_visit
+    document.getElementsByClassName("hostname-times-visited stat-box")[0].innerHTML = "# of visits: " + values.no_visit
     document.getElementsByClassName("total-number-of-images")[0].innerHTML = "# of images: " + values.no_image
     document.getElementsByClassName("total-size-of-images")[0].innerHTML = "Size of images: " + values.size_image
     let cache_hit_percentage = isNaN(values.no_cache_hit / values.no_total) ? "0.0%" : String((values.no_cache_hit * 100 / values.no_total).toFixed(5))
