@@ -32,6 +32,8 @@ chrome.webRequest.onCompleted.addListener(
         // add the file to statistics
         if (details.initiator === "undefined") {
             return
+        } else if (String(details.initiator).startsWith("chrome") || String(details.initiator).startsWith("brave")) {
+            return
         }
         let urlInitiator = new URL(details.initiator);
 

@@ -5,6 +5,7 @@ async function enumStorageForAllHostnames() {
     const all = await chrome.storage.local.get();
     clearInterval(setIntervalId)
     const allHostnamesSelect = document.getElementById('all-hostnames-select');
+    allHostnamesSelect.innerHTML = "<option value=\"none\" selected>Select a hostname</option>"
     allHostnamesSelect.addEventListener("change", (event) => {
         getHostnameAndSetValues(event.target.value);
     })
