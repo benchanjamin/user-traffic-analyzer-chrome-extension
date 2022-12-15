@@ -39,8 +39,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementsByClassName("hostname")[0].innerHTML = hostname;
 
-    let get = await accessStorage(hostname)
-    let values = JSON.parse(get[hostname])
+    let get = await accessStorage(hostname);
+    let values = JSON.parse(get[hostname]);
+    // values.no_visit = values.no_visit + 1;
+    // chrome.storage.local.set({[hostname]: JSON.stringify(values)});
 
     display(values);
 
@@ -92,6 +94,7 @@ async function startTimer(hostnameStartTime) {
 
 function reset(hostname) {
     let oldValues = {
+        no_visit: 0,
         no_main_frame: 0,
         size_main_frame: 0,
         no_sub_frame: 0,
@@ -132,6 +135,7 @@ function reset(hostname) {
 
 
 function display(values) {
+    document.getElementsByClassName("hostname-times-visited")[0].innerHTML = "# of times visited: " + values.no_visit
     document.getElementsByClassName("total-number-of-images")[0].innerHTML = "# of images: " + values.no_image
     document.getElementsByClassName("total-size-of-images")[0].innerHTML = "Size of images: " + values.size_image
     document.getElementsByClassName("cache-hit-percentage")[0].innerHTML = "Cache hit %: " + String(values.no_cache_hit / values.no_total)

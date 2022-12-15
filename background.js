@@ -24,6 +24,15 @@ function accessStorage(key) {
     });
 }
 
+chrome.webNavigation.onCompleted.addListener(async (details) => {
+    let url = new URL(details.url);
+    let hostname = url.hostname;
+    let get = await accessStorage(hostname);
+    let values = JSON.parse(get[hostname]);
+    values.no_visit = values.no_visit + 1;
+    chrome.storage.local.set({[hostname]: JSON.stringify(values)});
+});
+
 // listen for web requests
 chrome.webRequest.onCompleted.addListener(
     async function (details) {
@@ -52,6 +61,7 @@ chrome.webRequest.onCompleted.addListener(
 
         if (get[hostname] == undefined) {
             oldValues = {
+                no_visit: 0,
                 no_main_frame: 0,
                 size_main_frame: 0,
                 no_sub_frame: 0,
