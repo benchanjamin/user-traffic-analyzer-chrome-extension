@@ -3,17 +3,23 @@
 </script>
 <script type="module" src="reset.js" defer>
 </script>
-<!--<script type="module" src="hostnames.js" defer>-->
-<!--</script>-->
+<script type="module" src="hostnames.js" defer>
+</script>
 
 <div class="container">
-    <div>
-        <div class="title">User Traffic Data for Current Hostname</div>
-        <hr>
+    <a href="./popup.html" id="back-button"><span>< Go Back to Current Hostname Stats</span></a>
 
+    <div>
+        <div class="title">User Traffic Data for All Hostnames</div>
+        <hr>
+        <label for="all-hostnames-select">Choose one of your visited hostnames:</label>
+        <select name="all-hostnames" id="all-hostnames-select">
+            <option value="none" selected>Select a hostname</option>
+        </select>
+        <hr>
         <div>
 
-            <div class="subtitle">General Stats</div>
+            <div class="subtitle">General Stats for Selected Hostname</div>
 
 
             <div class="hostname stat-box">
@@ -37,7 +43,7 @@
 
             <!-- Miscellaneous -->
 
-            <div class="subtitle">Specific Stats</div>
+            <div class="subtitle">Specific Stats for Selected Hostname</div>
 
             <div class="total-number-of-images stat-box">
 
@@ -120,24 +126,4 @@
             </div>
         </div>
     </div>
-
-    <hr>
-
-    <a href="hostnames.html">
-        <button class="button">
-            See all stats for all hostnames in storage
-        </button>
-    </a>
-
-
-    <hr>
-    <div class="subtitle">Reset Options</div>
-
-    <button class="reset-hostname-button button">
-        Reset only for current hostname
-    </button>
-
-    <button class="reset-all-button button">
-        Reset for all hostnames in storage
-    </button>
 </div>
