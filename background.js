@@ -30,7 +30,7 @@ chrome.webRequest.onCompleted.addListener(
         // calculate fileSize
         let fileSize;
         details.responseHeaders.forEach(v => {
-            if (v.name.toLowerCase() == 'content-length') {
+            if (v.name.toLowerCase() === 'content-length') {
                 fileSize = parseInt(v.value);
             }
         });

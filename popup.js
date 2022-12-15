@@ -31,9 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementsByClassName("hostname")[0].innerHTML = hostname;
 
-    setInterval(startTimer.bind(hostnameStartTime), 1000);
-    let timer = await getURLTimer(hostnameStartTime)[hostnameStartTime];
-    console.log(timer);
+    // await startTimer(hostnameStartTime)
 });
 
 function sleep(ms) {
@@ -51,20 +49,30 @@ async function startTimer(hostnameStartTime) {
     const activeTab = await getActiveTabURL();
     let url = new URL(activeTab.url);
     let currentHostnameStartTime = url.hostname + "startTime";
+    let currentHostnameElapsedTime = url.hostname + "elapsedTime"
     // set date as current one if not in storage dict
     const currentDate = new Date().toISOString();
 
-    chrome.storage.local.get([currentHostnameStartTime], function(result) {
+    // Initializer
+    chrome.storage.local.get([currentHostnameStartTime], function (result) {
         let profile = result[currentHostnameStartTime];
         if (typeof profile === "undefined") {
-            chrome.storage.local.set({[currentHostnameStartTime] : currentDate})
+            chrome.storage.local.set({[currentHostnameStartTime]: currentDate})
+            chrome.storage.local.set({[currentHostnameElapsedTime]: '0'})
         } else {
             // Profile exists in storage
         }
     });
 
-    // let timer = await getURLTimer(currentHostnameStartTime)[currentHostnameStartTime];
-    chrome.storage.local.get([currentHostnameStartTime]).then((result) => {
-        console.log("Value currently is " + result[currentHostnameStartTime]);
-    });
+    while (currentHostnameStartTime === hostnameStartTime) {
+        let accumulatedSeconds;
+        chrome.storage.local.get([currentHostnameElapsedTime]).then((result) => {
+            console.log("Value currently is " + result[currentHostnameElapsedTime]);
+            accumulatedSeconds = parseInt(result[currentHostnameElapsedTime])
+        });
+
+        chrome.storage.local.get([currentHostnameElapsedTime]).then((result) => {
+            console.log("Value currently is " + result[currentHostnameElapsedTime]);
+        });
+    }
 }
