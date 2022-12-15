@@ -38,13 +38,13 @@ chrome.webRequest.onCompleted.addListener(
 
         // add the file to statistics
         console.log(details.initiator);
-        try {
-            let url = new URL(details.initiator);
-        }
-        finally {
 
+        if (details.initiator.startsWith("chrome") || details.initiator.startsWith("brave") || details.initiator === "undefined") {
+            return
         }
-        let hostname = url.hostname;
+        let urlInitiator = new URL(details.initiator);
+
+        let hostname = urlInitiator.hostname;
 
         let oldValues;
         let get = await accessStorage(hostname);
@@ -140,7 +140,7 @@ chrome.webRequest.onCompleted.addListener(
                 break;
         }
 
-        if(details.fromCache) {
+        if (details.fromCache) {
             oldValues.no_cache_hit++;
         }
         oldValues.no_total++;
@@ -150,5 +150,5 @@ chrome.webRequest.onCompleted.addListener(
             [hostname]: JSON.stringify(oldValues)
         });
     },
-    { urls: ["<all_urls>"] }, ["responseHeaders"]
+    {urls: ["<all_urls>"]}, ["responseHeaders"]
 );
