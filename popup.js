@@ -52,17 +52,16 @@ async function startTimer(hostname_timer) {
     let url = new URL(activeTab.url);
     let currentHostnameTimer = url.hostname + "-timer";
     // set date as current one if not in storage dict
-    const defaultValue = new Date();
-    chrome.storage.sync.get({[currentHostnameTimer]: defaultValue},
-        function (data) {
-            chrome.storage.sync.set({currentHostnameTimer: data.currentHostnameTimer});
-        }
-    );
+    const currentDate = new Date().toISOString();
 
+    chrome.storage.local.set({currentHostnameTimer: currentDate});
 
-    chrome.storage.sync.set({[currentHostnameTimer]: JSON.stringify()})
+    chrome.storage.local.get([currentHostnameTimer]).then((result) => {
+    }).catch(() => {
+        chrome.storage.local.set({currentHostnameTimer: currentDate});
+    });
 
-    // else if in dict
-
-
+    chrome.storage.sync.get([currentHostnameTimer]).then((result) => {
+        console.log("Value currently is " + result.key);
+    });
 }

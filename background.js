@@ -38,7 +38,12 @@ chrome.webRequest.onCompleted.addListener(
 
         // add the file to statistics
         console.log(details.initiator);
-        let url = new URL(details.initiator);
+        try {
+            let url = new URL(details.initiator);
+        }
+        finally {
+
+        }
         let hostname = url.hostname;
 
         let oldValues;
