@@ -59,7 +59,7 @@ chrome.webRequest.onCompleted.addListener(
         let oldValues;
         let get = await accessStorage(hostname);
 
-        if (get[hostname] == undefined) {
+        if (get[hostname] === undefined) {
             oldValues = {
                 no_visit: 0,
                 no_main_frame: 0,
