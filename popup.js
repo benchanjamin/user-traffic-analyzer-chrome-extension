@@ -16,7 +16,7 @@ const onDelete = e => {
 const setBookmarkAttributes = () => {
 };
 
-function getURLTimer(key) {
+async function getURLTimer(key) {
     return new Promise((resolve) => {
         chrome.storage.local.get(key, resolve)
     });
@@ -27,12 +27,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log(activeTab.url);
     const url = new URL(activeTab.url);
     const hostname = url.hostname;
-    const hostname_timer = hostname + "-timer";
+    const hostnameStartTime = hostname + "startTime";
 
     document.getElementsByClassName("hostname")[0].innerHTML = hostname;
 
-    setInterval(startTimer.bind(hostname_timer), 1000);
-    let timer = getURLTimer(hostname_timer)[hostname_timer];
+    setInterval(startTimer.bind(hostnameStartTime), 1000);
+    let timer = await getURLTimer(hostnameStartTime)[hostnameStartTime];
     console.log(timer);
 });
 
@@ -47,21 +47,24 @@ const getTime = t => {
     return date.toISOString().substr(11, 8);
 };
 
-async function startTimer(hostname_timer) {
+async function startTimer(hostnameStartTime) {
     const activeTab = await getActiveTabURL();
     let url = new URL(activeTab.url);
-    let currentHostnameTimer = url.hostname + "-timer";
+    let currentHostnameStartTime = url.hostname + "startTime";
     // set date as current one if not in storage dict
     const currentDate = new Date().toISOString();
 
-    chrome.storage.local.set({currentHostnameTimer: currentDate});
-
-    chrome.storage.local.get([currentHostnameTimer]).then((result) => {
-    }).catch(() => {
-        chrome.storage.local.set({currentHostnameTimer: currentDate});
+    chrome.storage.local.get([currentHostnameStartTime], function(result) {
+        let profile = result[currentHostnameStartTime];
+        if (typeof profile === "undefined") {
+            chrome.storage.local.set({[currentHostnameStartTime] : currentDate})
+        } else {
+            // Profile exists in storage
+        }
     });
 
-    chrome.storage.sync.get([currentHostnameTimer]).then((result) => {
-        console.log("Value currently is " + result.key);
+    // let timer = await getURLTimer(currentHostnameStartTime)[currentHostnameStartTime];
+    chrome.storage.local.get([currentHostnameStartTime]).then((result) => {
+        console.log("Value currently is " + result[currentHostnameStartTime]);
     });
 }
