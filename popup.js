@@ -2,12 +2,6 @@ import {getActiveTabURL} from "./utils.js";
 
 export let setIntervalId;
 
-async function getURLTimer(key) {
-    return new Promise((resolve) => {
-        chrome.storage.local.get(key, resolve)
-    });
-}
-
 function accessStorage(key) {
     return new Promise((resolve) => {
         chrome.storage.local.get(key, resolve)
