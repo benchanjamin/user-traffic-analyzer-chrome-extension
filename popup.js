@@ -73,7 +73,7 @@ export function display(values, hostname) {
     document.getElementsByClassName("hostname")[0].innerHTML = "Hostname: " + hostname;
     document.getElementsByClassName("hostname-times-visited stat-box")[0].innerHTML = "# of hostname visits: " + values.no_visit
     document.getElementsByClassName("total-number-of-images")[0].innerHTML = "# of images: " + values.no_image
-    document.getElementsByClassName("total-size-of-images")[0].innerHTML = "Total size (in bytes) of images: " + values.size_image
+    document.getElementsByClassName("total-size-of-images")[0].innerHTML = "Total size (in bytes) of image response bodies: " + values.size_image
     document.getElementsByClassName("successful-cache-hits")[0].innerHTML = "# of cache hits: " + values.no_cache_hit
     let cache_hit_percentage = isNaN(values.no_cache_hit / values.no_total) ? "0.00000%" : String((values.no_cache_hit * 100 / values.no_total).toFixed(5))
     document.getElementsByClassName("cache-hit-percentage")[0].innerHTML = "Cache hit % of browser: " + cache_hit_percentage
@@ -83,27 +83,27 @@ export function display(values, hostname) {
 
     // Miscellaneous
     document.getElementsByClassName("total-number-of-main-frame-requests")[0].innerHTML = "# of main-frames: " + values.no_main_frame
-    document.getElementsByClassName("total-size-of-main-frame-requests")[0].innerHTML = "Total size (in bytes) of main-frames: " + values.size_main_frame
+    document.getElementsByClassName("total-size-of-main-frame-requests")[0].innerHTML = "Total size (in bytes) of main-frame response bodies: " + values.size_main_frame
     document.getElementsByClassName("total-number-of-sub-frame-requests")[0].innerHTML = "# of sub-frames: " + values.no_sub_frame
-    document.getElementsByClassName("total-size-of-sub-frame-requests")[0].innerHTML = "Total size (in bytes) of sub-frames: " + values.size_sub_frame
+    document.getElementsByClassName("total-size-of-sub-frame-requests")[0].innerHTML = "Total size (in bytes) of sub-frame response bodies: " + values.size_sub_frame
     document.getElementsByClassName("total-number-of-stylesheet-requests")[0].innerHTML = "# of stylesheets: " + values.no_stylesheet
-    document.getElementsByClassName("total-size-of-stylesheet-requests")[0].innerHTML = "Total size (in bytes) of stylesheets: " + values.size_stylesheet
+    document.getElementsByClassName("total-size-of-stylesheet-requests")[0].innerHTML = "Total size (in bytes) of stylesheet response bodies: " + values.size_stylesheet
     document.getElementsByClassName("total-number-of-javascript-requests")[0].innerHTML = "# of scripts: " + values.no_script
-    document.getElementsByClassName("total-size-of-javascript-requests")[0].innerHTML = "Total size (in bytes) of scripts: " + values.size_script
+    document.getElementsByClassName("total-size-of-javascript-requests")[0].innerHTML = "Total size (in bytes) of script response bodies: " + values.size_script
     document.getElementsByClassName("total-number-of-font-requests")[0].innerHTML = "# of fonts: " + values.no_font
-    document.getElementsByClassName("total-size-of-font-requests")[0].innerHTML = "Total size (in bytes) of fonts: " + values.size_font
+    document.getElementsByClassName("total-size-of-font-requests")[0].innerHTML = "Total size (in bytes) of font response bodies: " + values.size_font
     document.getElementsByClassName("total-number-of-object-requests")[0].innerHTML = "# of objects: " + values.no_object
-    document.getElementsByClassName("total-size-of-object-requests")[0].innerHTML = "Total size (in bytes) of objects: " + values.size_object
+    document.getElementsByClassName("total-size-of-object-requests")[0].innerHTML = "Total size (in bytes) of object response bodies: " + values.size_object
     document.getElementsByClassName("total-number-of-xmlhttprequest-requests")[0].innerHTML = "# of xml-http-requests: " + values.no_xmlhttprequest
-    document.getElementsByClassName("total-size-of-xmlhttprequest-requests")[0].innerHTML = "Total size (in bytes) of xml-http-requests: " + values.size_xmlhttprequest
+    document.getElementsByClassName("total-size-of-xmlhttprequest-requests")[0].innerHTML = "Total size (in bytes) of xml-http-request response bodies: " + values.size_xmlhttprequest
     document.getElementsByClassName("total-number-of-ping-requests")[0].innerHTML = "# of pings: " + values.no_ping
-    document.getElementsByClassName("total-size-of-ping-requests")[0].innerHTML = "Total size (in bytes) of pings: " + values.size_ping
+    document.getElementsByClassName("total-size-of-ping-requests")[0].innerHTML = "Total size (in bytes) of ping response bodies: " + values.size_ping
     document.getElementsByClassName("total-number-of-csp-report-requests")[0].innerHTML = "# of csp-reports: " + values.no_csp_report
-    document.getElementsByClassName("total-size-of-csp-report-requests")[0].innerHTML = "Total size (in bytes) of csp-reports: " + values.size_csp_report
+    document.getElementsByClassName("total-size-of-csp-report-requests")[0].innerHTML = "Total size (in bytes) of csp-report response bodies: " + values.size_csp_report
     document.getElementsByClassName("total-number-of-media-requests")[0].innerHTML = "# of media: " + values.no_media
     document.getElementsByClassName("total-size-of-media-requests")[0].innerHTML = "Total size (in bytes) of media: " + values.size_media
     document.getElementsByClassName("total-number-of-websocket-requests")[0].innerHTML = "# of websockets: " + values.no_websocket
-    document.getElementsByClassName("total-size-of-websocket-requests")[0].innerHTML = "Total size (in bytes) of websockets: " + values.size_websocket
+    document.getElementsByClassName("total-size-of-websocket-requests")[0].innerHTML = "Total size (in bytes) of websocket response bodies: " + values.size_websocket
     document.getElementsByClassName("total-number-of-other-requests")[0].innerHTML = "# of other: " + values.no_other
-    document.getElementsByClassName("total-size-of-other-requests")[0].innerHTML = "Total size (in bytes) of other: " + values.size_other
+    document.getElementsByClassName("total-size-of-other-requests")[0].innerHTML = "Total size (in bytes) of other response bodies: " + values.size_other
 }
